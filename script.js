@@ -61,3 +61,14 @@ function getComputerChoice() {
 
     }
 }
+
+function getUserChoice(){
+
+    let choice='';
+    while(!(choice==='r'||choice==='p'||choice==='s'))
+        choice=prompt('enter choice');
+
+    return choice;
+}
+
+console.log(getUserChoice());
