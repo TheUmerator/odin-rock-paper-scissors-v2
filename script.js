@@ -36,3 +36,28 @@ best of 5
 announce the winner
 
 */
+
+function getComputerChoice() {
+    // 1 2 3
+    // randomize those 3 numbers
+    // switch statement to return r p or s
+    const minCeiled = Math.ceil(1);
+    const maxFloored = Math.floor(3);
+    let value = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+
+    switch (value) {
+
+        case 1:
+            return 'r';
+            break;
+
+        case 2:
+            return 'p';
+            break;
+
+        case 3:
+            return 's';
+            break;
+
+    }
+}
