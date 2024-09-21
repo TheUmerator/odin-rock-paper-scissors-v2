@@ -129,4 +129,41 @@ function playRound() {
 }
 
 
-console.log(playRound());
+// console.log(playRound());
+
+function playGame() {
+    let pScore = 0;
+    let cScore = 0;
+    let roundNum = 1;
+
+    while (roundNum <= 5) {
+        console.log('Round ' + roundNum);
+        console.log('Player Score: '+pScore);
+        console.log('Computer Score: '+cScore);
+
+        let rWinner = playRound();
+
+        switch (rWinner) {
+            case 'p':
+                pScore++;
+                roundNum++;
+                break;
+
+            case 'c':
+                cScore++;
+                roundNum++;
+                break;
+
+            case 'd':
+                break;
+        }
+    }
+
+    if (pScore>cScore)
+        console.log('You win the game!');
+
+    else if (pScore>cScore)
+        console.log('You lose the game!');
+}
+
+playGame();
