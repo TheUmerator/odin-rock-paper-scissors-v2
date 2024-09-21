@@ -62,13 +62,71 @@ function getComputerChoice() {
     }
 }
 
-function getUserChoice(){
+function getUserChoice() {
 
-    let choice='';
-    while(!(choice==='r'||choice==='p'||choice==='s'))
-        choice=prompt('enter choice');
+    let choice = '';
+    while (!(choice === 'r' || choice === 'p' || choice === 's'))
+        choice = prompt('enter choice');
 
     return choice;
 }
 
-console.log(getUserChoice());
+
+function playRound() {
+
+    //     whoever wins, return the name
+    //     if draw, return draw
+    /*
+    r>s
+    r<p
+    r==r
+
+    p>r
+    p<s
+    p==p
+
+    s>p
+    s<r
+    s==s
+    */
+
+    // You (Lose/Win)!
+    //r/p/s beats r/p/s
+    // its a draw! both chose r/p/s
+
+    let pChoice = getUserChoice();
+    let cChoice = getComputerChoice();
+
+    if (pChoice === 'r' && cChoice === 's') {
+        console.log('You Win!');
+        console.log('Rock beats Scissors!');
+        return 'p';
+    } else if (pChoice === 'r' && cChoice === 'p') {
+        console.log('You Lose!');
+        console.log('Rock beats Paper!');
+        return 'c';
+    } else if (pChoice === 'p' && cChoice === 's') {
+        console.log('You Lose!');
+        console.log('Scissors beats Paper!');
+        return 'c';
+    } else if (pChoice === 'p' && cChoice === 'r') {
+        console.log('You Win!');
+        console.log('Paper beats Rock!');
+        return 'p';
+    } else if (pChoice === 's' && cChoice === 'p') {
+        console.log('You Win!');
+        console.log('Scissors beats Paper!');
+        return 'p';
+    } else if (pChoice === 's' && cChoice === 'r') {
+        console.log('You Lose!');
+        console.log('Rock beats Scissors!');
+        return 'c';
+    } else {
+        console.log('Its a draw!');
+        console.log('both chose the same!');
+        return 'd';
+    }
+}
+
+
+console.log(playRound());
