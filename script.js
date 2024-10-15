@@ -63,7 +63,7 @@ function getComputerChoice() {
 }
 
 function getUserChoice() {
-
+// MODIFY THIS SO THAT BUTTON CHOICES CORRELATE TO R P OR S
     let choice = '';
     while (!(choice === 'r' || choice === 'p' || choice === 's'))
         choice = prompt('enter choice');
