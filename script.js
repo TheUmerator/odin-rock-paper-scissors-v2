@@ -166,4 +166,13 @@ function playGame() {
         console.log('You lose the game!');
 }
 
-playGame();
+// playGame();
+
+// ADDING A UI TO THIS NOW!!!!
+
+const choiceBtn=document.querySelectorAll('button');
+
+choiceBtn.forEach(choice=>{
+    choice.addEventListener('click',()=>console.log(choice.textContent));
+    // IT WORKS, WE ARE GETTING TEXTCONTENT FROM EACH BUTTON
+})
