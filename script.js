@@ -63,7 +63,7 @@ function getComputerChoice() {
 }
 
 function getUserChoice() {
-// MODIFY THIS SO THAT BUTTON CHOICES CORRELATE TO R P OR S
+    // MODIFY THIS SO THAT BUTTON CHOICES CORRELATE TO R P OR S
     let choice = '';
     while (!(choice === 'r' || choice === 'p' || choice === 's'))
         choice = prompt('enter choice');
@@ -72,8 +72,8 @@ function getUserChoice() {
 }
 
 
-function playRound() {
-
+function playRound(pChoice, cChoice) {
+    // {
     //     whoever wins, return the name
     //     if draw, return draw
     /*
@@ -94,8 +94,12 @@ function playRound() {
     //r/p/s beats r/p/s
     // its a draw! both chose r/p/s
 
-    let pChoice = getUserChoice();
-    let cChoice = getComputerChoice();
+    // }
+
+
+    // MODIFY THIS TO THAT YOUR CHOICE MOVES INTO THIS WITHOUT REWRITING EVERYTHING
+    // let pChoice = getUserChoice();
+    // let cChoice = getComputesrChoice();
 
     if (pChoice === 'r' && cChoice === 's') {
         console.log('You Win!');
@@ -131,48 +135,79 @@ function playRound() {
 
 // console.log(playRound());
 
-function playGame() {
-    let pScore = 0;
-    let cScore = 0;
-    let roundNum = 1;
+// function playGame() {
+//     let pScore = 0;
+//     let cScore = 0;
+//     let roundNum = 1;
 
-    while (roundNum <= 5) {
-        console.log('Round ' + roundNum);
-        console.log('Player Score: '+pScore);
-        console.log('Computer Score: '+cScore);
+//     while (roundNum <= 5) {
+//         console.log('Round ' + roundNum);
+//         console.log('Player Score: ' + pScore);
+//         console.log('Computer Score: ' + cScore);
 
-        let rWinner = playRound();
+//         let rWinner = playRound();
 
-        switch (rWinner) {
-            case 'p':
-                pScore++;
-                roundNum++;
-                break;
+//         switch (rWinner) {
+//             case 'p':
+//                 pScore++;
+//                 roundNum++;
+//                 break;
 
-            case 'c':
-                cScore++;
-                roundNum++;
-                break;
+//             case 'c':
+//                 cScore++;
+//                 roundNum++;
+//                 break;
 
-            case 'd':
-                break;
-        }
-    }
+//             case 'd':
+//                 break;
+//         }
+//     }
 
-    if (pScore>cScore)
-        console.log('You win the game!');
+//     if (pScore > cScore)
+//         console.log('You win the game!');
 
-    else if (pScore>cScore)
-        console.log('You lose the game!');
-}
+//     else if (pScore > cScore)
+//         console.log('You lose the game!');
+// }
 
 // playGame();
 
 // ADDING A UI TO THIS NOW!!!!
+function playGame(){
+const choiceBtn = document.querySelectorAll('button');
+let pscore = document.querySelector('.pscore');
+let cscore = document.querySelector('.cscore');
+let info = document.querySelector('.info-box');
 
-const choiceBtn=document.querySelectorAll('button');
 
-choiceBtn.forEach(choice=>{
-    choice.addEventListener('click',()=>console.log(choice.textContent));
-    // IT WORKS, WE ARE GETTING TEXTCONTENT FROM EACH BUTTON
+let pNum=0;
+let cNum=0;
+choiceBtn.forEach(choice => {
+    choice.addEventListener('click', () => {
+        let cChoice = getComputerChoice();
+        let pChoice = choice.textContent.charAt(0).toLowerCase();
+        if(cNum==5||pNum==5){
+            cNum=0;
+            pNum=0; 
+            pscore.textContent = pNum;
+            cscore.textContent = cNum;
+        }
+        switch (playRound(pChoice, cChoice)) {
+            case 'p':
+                ++pNum;
+                pscore.textContent = pNum;
+                break;
+            case 'c':
+                ++cNum;
+                cscore.textContent = cNum;
+                break;
+        }
+
+        if(cNum==5||pNum==5){
+            info.textContent='Make a choice to play again!';
+        }
+    });
 })
+}
+
+playGame();
